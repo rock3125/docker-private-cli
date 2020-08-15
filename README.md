@@ -3,11 +3,18 @@ Written in Python 3, based on https://github.com/dhamya/docker-registry-cli
 
 usage:
 ```
+# list repo
 ./docker-private.py -s https://129.157.181.199:5000 -u admin -p p@ssw0rd
 
-# or
+# or list repo without credentials
 
 ./docker-private.py -s https://129.157.181.199:5000
+
+# remove an item from the repo
+./docker-private.py -s https://129.157.181.199:5000 -d name:tag
+
+# and then run garbage collection to actually remove it
+docker exec registry bin/registry garbage-collect /etc/docker/registry/config.yml
 ```
 
 ## Delete function does not garbage collect
