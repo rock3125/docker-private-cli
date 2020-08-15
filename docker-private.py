@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
-import getopt, sys, base64
+import getopt
+import sys
+import base64
 import requests
 
 _SERVER = ""
@@ -9,8 +11,8 @@ _CATALOG = "_catalog"
 _MANIFEST = "/manifests/"
 _TAGS = "/tags/list"
 _DOCKER_CONT_HDR = "docker-content-digest"
-_FSLAYERS = "fsLayers"
-_BLOBSUM = "blobSum"
+_FS_LAYERS = "fsLayers"
+_BLOB_SUM = "blobSum"
 exclude_list = list()
 
 
@@ -31,16 +33,16 @@ def make_request(url, method):
     try:
         if method == "DELETE":
             if len(_AUTH_TOKEN) > 0:
-                return requests.delete(url, headers = {"Authorization": "Basic %s" % _AUTH_TOKEN})
+                return requests.delete(url, headers={"Authorization": "Basic %s" % _AUTH_TOKEN})
             else:
                 return requests.delete(url)
         else:
             if len(_AUTH_TOKEN) > 0:
-                return requests.get(url, headers = {"Authorization": "Basic %s" % _AUTH_TOKEN})
+                return requests.get(url, headers={"Authorization": "Basic %s" % _AUTH_TOKEN})
             else:
                 return requests.get(url)
 
-    except:
+    except ValueError:
         print("Unknown error occurred during execution")
 
 
