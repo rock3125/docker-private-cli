@@ -190,10 +190,7 @@ def main():
     else:
         _AUTH_TOKEN = ""
 
-    _url = _SERVER + _CATALOG
-    result = make_request(_url, "GET")
-    repos = result.json()
-
+    # delete specific version or get repos?
     if delete:
         repo = image_to_delete.split(':')[0]
         tag = image_to_delete.split(':')[1]
